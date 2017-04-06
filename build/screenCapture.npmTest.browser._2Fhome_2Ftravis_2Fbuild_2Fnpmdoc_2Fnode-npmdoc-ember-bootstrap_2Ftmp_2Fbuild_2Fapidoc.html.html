@@ -1,0 +1,172 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="http://kaliber5.github.io/ember-bootstrap/">ember-bootstrap (v0.11.3)</a>
+</h1>
+<h4>Twitter Bootstrap components for Ember.js</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.ember-bootstrap">module ember-bootstrap</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ember-bootstrap.included">
+            function <span class="apidocSignatureSpan">ember-bootstrap.</span>included
+            <span class="apidocSignatureSpan">(app)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ember-bootstrap.treeForStyles">
+            function <span class="apidocSignatureSpan">ember-bootstrap.</span>treeForStyles
+            <span class="apidocSignatureSpan">(tree)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">ember-bootstrap.</span>name</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.ember-bootstrap" id="apidoc.module.ember-bootstrap">module ember-bootstrap</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.ember-bootstrap.included" id="apidoc.element.ember-bootstrap.included">
+        function <span class="apidocSignatureSpan">ember-bootstrap.</span>included
+        <span class="apidocSignatureSpan">(app)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function included(app) {
+  // workaround for https://github.com/ember-cli/ember-cli/issues/3718
+  if (typeof app.import !== 'function' &amp;&amp; app.app) {
+    app = app.app;
+  }
+  this.app = app;
+
+  var options = extend(defaultOptions, app.options['ember-bootstrap']);
+  var bootstrapPath = path.join(app.bowerDirectory, 'bootstrap/dist');
+
+  // Import css from bootstrap
+  if (options.importBootstrapCSS) {
+    app.import(path.join(bootstrapPath, 'css/bootstrap.css'));
+    app.import(path.join(bootstrapPath, 'css/bootstrap.css.map'), {destDir: 'assets'});
+  }
+
+  if (options.importBootstrapTheme) {
+    app.import(path.join(bootstrapPath, 'css/bootstrap-theme.css'));
+    app.import(path.join(bootstrapPath, 'css/bootstrap-theme.css.map'), {destDir: 'assets'});
+  }
+
+  // Import glyphicons
+  if (options.importBootstrapFont) {
+    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.eot'), {destDir: '/fonts'});
+    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.svg'), {destDir: '/fonts'});
+    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.ttf'), {destDir: '/fonts'});
+    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.woff'), {destDir: '/fonts'});
+    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.woff2'), {destDir: '/fonts'});
+  }
+
+  if (!process.env.EMBER_CLI_FASTBOOT) {
+    app.import('vendor/transition.js');
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ember-bootstrap.treeForStyles" id="apidoc.element.ember-bootstrap.treeForStyles">
+        function <span class="apidocSignatureSpan">ember-bootstrap.</span>treeForStyles
+        <span class="apidocSignatureSpan">(tree)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function treeForStyles(tree) {
+  var styleTrees = [];
+
+  if (this.app.project.findAddonByName('ember-cli-less')) {
+    var lessTree = new Funnel(path.join(this.app.bowerDirectory, 'bootstrap/less'), {
+      destDir: 'ember-bootstrap'
+    });
+    styleTrees.push(lessTree);
+  }
+
+  if (tree) {
+    styleTrees.push(tree);
+  }
+
+  return mergeTrees(styleTrees, { overwrite: true });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
