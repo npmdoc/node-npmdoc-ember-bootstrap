@@ -1,9 +1,14 @@
-# api documentation for  [ember-bootstrap (v0.11.3)](http://kaliber5.github.io/ember-bootstrap/)  [![npm package](https://img.shields.io/npm/v/npmdoc-ember-bootstrap.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-ember-bootstrap) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-ember-bootstrap.svg)](https://travis-ci.org/npmdoc/node-npmdoc-ember-bootstrap)
+# npmdoc-ember-bootstrap
+
+#### api documentation for  [ember-bootstrap (v0.11.3)](http://kaliber5.github.io/ember-bootstrap/)  [![npm package](https://img.shields.io/npm/v/npmdoc-ember-bootstrap.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-ember-bootstrap) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-ember-bootstrap.svg)](https://travis-ci.org/npmdoc/node-npmdoc-ember-bootstrap)
+
 #### Twitter Bootstrap components for Ember.js
 
-[![NPM](https://nodei.co/npm/ember-bootstrap.png?downloads=true)](https://www.npmjs.com/package/ember-bootstrap)
+[![NPM](https://nodei.co/npm/ember-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/ember-bootstrap)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-ember-bootstrap/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-ember-bootstrap_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-ember-bootstrap/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-ember-bootstrap/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-ember-bootstrap/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-ember-bootstrap/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-ember-bootstrap/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-ember-bootstrap/build/screenCapture.npmPackageListing.svg)
 
@@ -17,8 +22,7 @@
 
 {
     "author": {
-        "name": "Simon Ihmig",
-        "email": "ihmig@kaliber5.de"
+        "name": "Simon Ihmig"
     },
     "bugs": {
         "url": "https://github.com/kaliber5/ember-bootstrap/issues"
@@ -95,13 +99,11 @@
     "license": "MIT",
     "maintainers": [
         {
-            "name": "simonihmig",
-            "email": "ihmig@kaliber5.de"
+            "name": "simonihmig"
         }
     ],
     "name": "ember-bootstrap",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/kaliber5/ember-bootstrap.git"
@@ -113,87 +115,6 @@
     },
     "version": "0.11.3"
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module ember-bootstrap](#apidoc.module.ember-bootstrap)
-1.  [function <span class="apidocSignatureSpan">ember-bootstrap.</span>included (app)](#apidoc.element.ember-bootstrap.included)
-1.  [function <span class="apidocSignatureSpan">ember-bootstrap.</span>treeForStyles (tree)](#apidoc.element.ember-bootstrap.treeForStyles)
-1.  string <span class="apidocSignatureSpan">ember-bootstrap.</span>name
-
-
-
-# <a name="apidoc.module.ember-bootstrap"></a>[module ember-bootstrap](#apidoc.module.ember-bootstrap)
-
-#### <a name="apidoc.element.ember-bootstrap.included"></a>[function <span class="apidocSignatureSpan">ember-bootstrap.</span>included (app)](#apidoc.element.ember-bootstrap.included)
-- description and source-code
-```javascript
-function included(app) {
-  // workaround for https://github.com/ember-cli/ember-cli/issues/3718
-  if (typeof app.import !== 'function' && app.app) {
-    app = app.app;
-  }
-  this.app = app;
-
-  var options = extend(defaultOptions, app.options['ember-bootstrap']);
-  var bootstrapPath = path.join(app.bowerDirectory, 'bootstrap/dist');
-
-  // Import css from bootstrap
-  if (options.importBootstrapCSS) {
-    app.import(path.join(bootstrapPath, 'css/bootstrap.css'));
-    app.import(path.join(bootstrapPath, 'css/bootstrap.css.map'), {destDir: 'assets'});
-  }
-
-  if (options.importBootstrapTheme) {
-    app.import(path.join(bootstrapPath, 'css/bootstrap-theme.css'));
-    app.import(path.join(bootstrapPath, 'css/bootstrap-theme.css.map'), {destDir: 'assets'});
-  }
-
-  // Import glyphicons
-  if (options.importBootstrapFont) {
-    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.eot'), {destDir: '/fonts'});
-    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.svg'), {destDir: '/fonts'});
-    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.ttf'), {destDir: '/fonts'});
-    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.woff'), {destDir: '/fonts'});
-    app.import(path.join(bootstrapPath, 'fonts/glyphicons-halflings-regular.woff2'), {destDir: '/fonts'});
-  }
-
-  if (!process.env.EMBER_CLI_FASTBOOT) {
-    app.import('vendor/transition.js');
-  }
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.ember-bootstrap.treeForStyles"></a>[function <span class="apidocSignatureSpan">ember-bootstrap.</span>treeForStyles (tree)](#apidoc.element.ember-bootstrap.treeForStyles)
-- description and source-code
-```javascript
-function treeForStyles(tree) {
-  var styleTrees = [];
-
-  if (this.app.project.findAddonByName('ember-cli-less')) {
-    var lessTree = new Funnel(path.join(this.app.bowerDirectory, 'bootstrap/less'), {
-      destDir: 'ember-bootstrap'
-    });
-    styleTrees.push(lessTree);
-  }
-
-  if (tree) {
-    styleTrees.push(tree);
-  }
-
-  return mergeTrees(styleTrees, { overwrite: true });
-}
-```
-- example usage
-```shell
-n/a
 ```
 
 
